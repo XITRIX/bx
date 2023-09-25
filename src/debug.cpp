@@ -57,6 +57,8 @@ namespace bx
 	{
 #if BX_CRT_NONE
 		crt0::debugOutput(_out);
+#elif BX_PLATFORM_SWITCH
+        printf("%s\n", _out);
 #elif BX_PLATFORM_ANDROID
 #	ifndef BX_ANDROID_LOG_TAG
 #		define BX_ANDROID_LOG_TAG ""

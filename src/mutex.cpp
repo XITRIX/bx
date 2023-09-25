@@ -18,7 +18,8 @@
 	|| BX_PLATFORM_OSX     \
 	|| BX_PLATFORM_PS4     \
 	|| BX_PLATFORM_RPI	   \
-	|| BX_PLATFORM_NX
+	|| BX_PLATFORM_NX	   \
+	|| BX_PLATFORM_SWITCH
 #	include <pthread.h>
 #elif  BX_PLATFORM_WINDOWS \
 	|| BX_PLATFORM_WINRT   \

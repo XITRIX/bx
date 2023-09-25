@@ -19,6 +19,9 @@
 #	if BX_CONFIG_CRT_DIRECTORY_READER
 #		include <dirent.h>
 #	endif // BX_CONFIG_CRT_DIRECTORY_READER
+#   if BX_PLATFORM_SWITCH
+#   define _POSIX_C_SOURCE 200809L
+#   endif // BX_PLATFORM_SWITCH
 #	include <stdio.h>      // remove
 #	include <sys/stat.h>   // stat, mkdir
 #	if BX_CRT_MSVC
@@ -79,7 +82,9 @@ namespace bx
 	  || BX_PLATFORM_OSX
 #		define fseeko64 fseeko
 #		define ftello64 ftello
-#	elif BX_PLATFORM_PS4
+#	elif 0 				 \
+      || BX_PLATFORM_PS4 \
+      || BX_PLATFORM_SWITCH
 #		define fseeko64 fseek
 #		define ftello64 ftell
 #	endif // BX_

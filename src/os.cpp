@@ -27,6 +27,7 @@
 	|| BX_PLATFORM_IOS        \
 	|| BX_PLATFORM_LINUX      \
 	|| BX_PLATFORM_NX         \
+	|| BX_PLATFORM_SWITCH     \
 	|| BX_PLATFORM_OSX        \
 	|| BX_PLATFORM_PS4        \
 	|| BX_PLATFORM_RPI
@@ -40,7 +41,8 @@
 #	endif // BX_PLATFORM_*
 
 #	include <time.h> // nanosleep
-#	if !BX_PLATFORM_PS4
+#	if !BX_PLATFORM_PS4      \
+    && !BX_PLATFORM_SWITCH
 #		include <dlfcn.h> // dlopen, dlclose, dlsym
 #	endif // !BX_PLATFORM_PS4
 
@@ -178,6 +180,7 @@ namespace bx
 #if BX_PLATFORM_WINDOWS
 		return (void*)::LoadLibraryA(_filePath.getCPtr() );
 #elif  BX_PLATFORM_EMSCRIPTEN \
+	|| BX_PLATFORM_SWITCH     \
 	|| BX_PLATFORM_PS4        \
 	|| BX_PLATFORM_XBOXONE    \
 	|| BX_PLATFORM_WINRT      \
@@ -201,6 +204,7 @@ namespace bx
 #if BX_PLATFORM_WINDOWS
 		::FreeLibrary( (HMODULE)_handle);
 #elif  BX_PLATFORM_EMSCRIPTEN \
+	|| BX_PLATFORM_SWITCH     \
 	|| BX_PLATFORM_PS4        \
 	|| BX_PLATFORM_XBOXONE    \
 	|| BX_PLATFORM_WINRT      \
@@ -220,6 +224,7 @@ namespace bx
 #if BX_PLATFORM_WINDOWS
 		return (void*)::GetProcAddress( (HMODULE)_handle, symbol);
 #elif  BX_PLATFORM_EMSCRIPTEN \
+	|| BX_PLATFORM_SWITCH     \
 	|| BX_PLATFORM_PS4        \
 	|| BX_PLATFORM_XBOXONE    \
 	|| BX_PLATFORM_WINRT      \

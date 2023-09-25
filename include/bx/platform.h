@@ -56,6 +56,7 @@
 #define BX_PLATFORM_IOS        0
 #define BX_PLATFORM_LINUX      0
 #define BX_PLATFORM_NX         0
+#define BX_PLATFORM_SWITCH     0
 #define BX_PLATFORM_OSX        0
 #define BX_PLATFORM_PS4        0
 #define BX_PLATFORM_PS5        0
@@ -222,6 +223,9 @@
 #elif defined(__NX__)
 #	undef  BX_PLATFORM_NX
 #	define BX_PLATFORM_NX 1
+#elif defined(__SWITCH__)
+#	undef  BX_PLATFORM_SWITCH
+#	define BX_PLATFORM_SWITCH 1
 #elif defined(__HAIKU__)
 #	undef  BX_PLATFORM_HAIKU
 #	define BX_PLATFORM_HAIKU 1
@@ -238,6 +242,9 @@
 #	elif defined(__GLIBC__)
 #		undef  BX_CRT_GLIBC
 #		define BX_CRT_GLIBC (__GLIBC__ * 10000 + __GLIBC_MINOR__ * 100)
+#	elif defined(__SWITCH__)
+#		undef  BX_CRT_GLIBC
+#		define BX_CRT_GLIBC (22000)
 #	elif defined(__MINGW32__) || defined(__MINGW64__)
 #		undef  BX_CRT_MINGW
 #		define BX_CRT_MINGW 1
@@ -271,6 +278,7 @@
 	||  BX_PLATFORM_IOS        \
 	||  BX_PLATFORM_LINUX      \
 	||  BX_PLATFORM_NX         \
+	||  BX_PLATFORM_SWITCH     \
 	||  BX_PLATFORM_OSX        \
 	||  BX_PLATFORM_PS4        \
 	||  BX_PLATFORM_PS5        \
@@ -287,6 +295,7 @@
 	||  BX_PLATFORM_IOS        \
 	||  BX_PLATFORM_LINUX      \
 	||  BX_PLATFORM_NX         \
+	||  BX_PLATFORM_SWITCH     \
 	||  BX_PLATFORM_OSX        \
 	||  BX_PLATFORM_PS4        \
 	||  BX_PLATFORM_PS5        \
@@ -299,6 +308,7 @@
 ///
 #define BX_PLATFORM_OS_CONSOLE  (0 \
 	||  BX_PLATFORM_NX             \
+	||  BX_PLATFORM_SWITCH         \
 	||  BX_PLATFORM_PS4            \
 	||  BX_PLATFORM_PS5            \
 	||  BX_PLATFORM_WINRT          \
@@ -386,6 +396,8 @@
 #	define BX_PLATFORM_NAME "None"
 #elif BX_PLATFORM_NX
 #	define BX_PLATFORM_NAME "NX"
+#elif BX_PLATFORM_SWITCH
+#	define BX_PLATFORM_NAME "Switch"
 #elif BX_PLATFORM_OSX
 #	define BX_PLATFORM_NAME "OSX"
 #elif BX_PLATFORM_PS4
